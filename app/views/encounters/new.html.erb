@@ -1,0 +1,64 @@
+<h1>Add New Patient Encounter</h1>
+
+<br>
+<br>
+
+<%= form_for([@patient, @encounter]) do |f| %>
+
+<% if @patient.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@patient.errors.count, "error") %> blocked this encounter from being saved:
+    </h2>
+    <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <br>
+  <br>
+<% end %>
+
+<div class="patient_add">
+  <%= f.label :visit_number %>
+  <br/>
+  <%= f.text_field :visit_number %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :admitted_at %>
+  <br/>
+  <%= f.date_field :admitted_at %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :discharged_at %>
+  <br/>
+  <%= f.date_field :discharged_at %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :location %>
+  <br/>
+  <%= f.text_field :location %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :room %>
+  <br/>
+  <%= f.text_field :room %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :bed %>
+  <br/>
+  <%= f.text_field :bed %>
+</div>
+
+<br>
+
+<%= f.submit %> |
+<%= link_to 'Cancel', patient_path(@patient.id) %>
+
+<% end %>

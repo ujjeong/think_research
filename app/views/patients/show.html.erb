@@ -1,0 +1,63 @@
+<h1>Patient Details</h1>
+
+<br>
+<br>
+
+<h2>Patient's Information</h2>
+
+<table id="patient_list">
+  <tr>
+    <th class="tableCol">MRN</th>
+    <th class="tableCol">First Name</th>
+    <th class="tableCol">Middle Name</th>
+    <th class="tableCol">Last Name</th>
+    <th class="tableCol">Weight</th>
+    <th class="tableCol">Height</th>
+  </tr>
+  <tr>
+    <td class="tableCol"><%= @patient.mrn %></td>
+    <td class="tableCol"><%= @patient.first_name %></td>
+    <td class="tableCol"><%= @patient.middle_name %></td>
+    <td class="tableCol"><%= @patient.last_name %></td>
+    <td class="tableCol"><%= @patient.weight %></td>
+    <td class="tableCol"><%= @patient.height %></td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+<h2>Patient's Encounters</h2>
+
+<%= link_to 'Add Encounter', new_patient_encounter_path(@patient.id) %>
+
+<br>
+<br>
+
+<% if @patient.encounters.count > 0 %>
+  <table id="patient_list">
+    <tr>
+      <th class="tableCol">Visit Number</th>
+      <th class="tableCol">Admitted At</th>
+      <th class="tableCol">Discharged At</th>
+      <th colspan="3">Action</th>
+    </tr>
+
+    <% @patient.encounters.each do |encounter| %>
+    <tr>
+      <td class="tableCol"><%= encounter.visit_number %></td>
+      <td class="tableCol"><%= encounter.admitted_at %></td>
+      <td class="tableCol"><%= encounter.discharged_at %></td>
+      <td><%= link_to 'Show', patient_encounter_path(encounter.patient_id, encounter.id) %></td>
+      <td><%= link_to 'Edit', edit_patient_encounter_path(encounter.patient_id, encounter.id) %></td>
+      <td><%= link_to 'Destroy', patient_encounter_path(encounter.patient_id, encounter.id), method: :delete, data: {:confirm => 'Are you sure?'} %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nothing Found</p>
+<% end %>
+
+<br>
+
+<%= link_to 'Back', patients_path %>

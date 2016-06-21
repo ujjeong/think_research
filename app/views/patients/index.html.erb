@@ -1,0 +1,32 @@
+<h1>Patient List</h1>
+
+<br>
+ 
+ <%= link_to 'New Patient', new_patient_path %>
+
+ <br>
+ <br>
+
+<% if @patient.count > 0 %>
+  <table id="patient_list">
+    <tr>
+      <th class="tableCol">MRN</th>
+      <th class="tableCol">First Name</th>
+      <th class="tableCol">Last Name</th>
+      <th colspan="3">Actions</th>
+    </tr>
+   
+    <% @patient.each do |patient| %>
+      <tr>
+        <td class="tableCol"><%= patient.mrn %></td>
+        <td class="tableCol"><%= patient.first_name %></td>
+        <td class="tableCol"><%= patient.last_name %></td>
+        <td><%= link_to 'Show', patient_path(patient) %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Destroy', patient_path(patient), method: :delete, data: {:confirm => 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nothing Found</p>
+<% end %>

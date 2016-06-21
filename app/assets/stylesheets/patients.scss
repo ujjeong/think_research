@@ -1,0 +1,23 @@
+// Place all the styles related to the patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+   font-family: Helvetica, Geneva, Arial, sans-serif;
+   font-size: small;
+   font-color: #000;
+}
+
+div.patient_add{
+	display: table-cell;
+	text-align:center;
+	border: 3px solid #fff;
+}
+
+#patient_list{
+	text-align: center;
+}
+.tableCol{
+	width:150px;
+	text-align: center;
+}

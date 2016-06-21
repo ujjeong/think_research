@@ -1,0 +1,65 @@
+<h>Edit Patient Information</h>
+
+<br>
+<br>
+
+<%= form_for :patient, url: patient_path(@patient), method: :patch do |f| %>
+
+<% if @patient.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@patient.errors.count, "error") %> blocked this patient from being saved:
+    </h2>
+    <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <br>
+  <br>
+<% end %>
+
+
+<div class="patient_add">
+  <%= f.label :first_name %>
+  <br/>
+  <%= f.text_field :first_name %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :middle_name %>
+  <br/>
+  <%= f.text_field :middle_name %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :last_name %>
+  <br/>
+  <%= f.text_field :last_name %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :weight %>
+  <br/>
+  <%= f.text_field :weight %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :height %>
+  <br/>
+  <%= f.text_field :height %>
+</div>
+
+<div class="patient_add">
+  <%= f.label :mrn %>
+  <br/>
+  <%= f.text_field :mrn %>
+</div>
+
+<br>
+
+<%= f.submit %> |
+<%= link_to 'Cancel', patients_path %>
+
+<% end %>

@@ -1,0 +1,29 @@
+<h1>Patient Encounter Details</h1>
+
+<br>
+<br>
+
+<table id="patient_list">
+  <tr>
+    <th class="tableCol">Visit Number</th>
+    <th class="tableCol">Admitted At</th>
+    <th class="tableCol">Discharged At</th>
+    <th class="tableCol">Location</th>
+    <th class="tableCol">Room</th>
+    <th class="tableCol">Bed</th>
+  </tr>
+  <tr>
+    <td class="tableCol"><%= @encounter.visit_number %></td>
+    <td class="tableCol"><%= @encounter.admitted_at %></td>
+    <td class="tableCol"><%= @encounter.discharged_at %></td>
+    <td class="tableCol"><%= @encounter.location %></td>
+    <td class="tableCol"><%= @encounter.room %></td>
+    <td class="tableCol"><%= @encounter.bed %></td>
+  </tr>
+</table>
+
+<br>
+
+<%= link_to 'Edit', edit_patient_encounter_path(@patient, @encounter.id) %> |
+<%= link_to 'Destroy', patient_encounter_path(@patient, @encounter.id), method: :delete, data: {:confirm => 'Are you sure?'} %> |
+<%= link_to 'Back', patient_path(@patient) %>
