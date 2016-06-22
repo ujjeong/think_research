@@ -12,7 +12,7 @@ class PatientsController < ApplicationController
 	    @patient = Patient.find(params[:id])
 
 	    # If inifilizing fails, redirect them to the root page
-		if(!defined? @patient)
+		if(!defined? @patient or params[:id] == nil)
 			redirect_to root_path
 		end
 	end
@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
 		@patient = Patient.find(params[:id])
 
 		# If inifilizing fails, redirect them to the root page
-		if(!defined? @patient)
+		if(!defined? @patient or params[:id] == nil)
 			redirect_to root_path
 		end
 	end
@@ -39,7 +39,7 @@ class PatientsController < ApplicationController
 		@patient = Patient.find(params[:id])
 
 		# If inifilizing fails, redirect them to the root page
-		if(!defined? @patient)
+		if(!defined? @patient or params[:id] == nil)
 			redirect_to root_path
 		end
 		 
@@ -73,7 +73,7 @@ class PatientsController < ApplicationController
   		@patient = Patient.find(params[:id])
 
   		# If inifilizing fails, redirect them to the root page
-		if(!defined? @patient)
+		if(!defined? @patient or params[:id] == nil)
 			redirect_to root_path
 		else
 			@patient.destroy

@@ -25,5 +25,5 @@
 <br>
 
 <%= link_to 'Edit', edit_patient_encounter_path(@patient, @encounter.id) %> |
-<%= link_to 'Destroy', patient_encounter_path(@patient, @encounter.id), method: :delete, data: {:confirm => 'Are you sure?'} %> |
+<%= link_to 'Destroy', patient_encounter_path(@patient, @encounter.id), method: :delete, data: {:confirm => 'Are you sure to delete the item?'} %> |
 <%= link_to 'Back', patient_path(@patient) %>

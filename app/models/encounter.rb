@@ -1,7 +1,9 @@
 class Encounter < ActiveRecord::Base
  	belongs_to :patient
  	validates :visit_number, :admitted_at, :discharged_at, presence: true
-	validates :bed, :room, numericality: { only_integer: true }
+ 	validates :visit_number, :numericality => true
+ 	validates :room, :numericality => true, :allow_nil => true
+ 	validates :bed, :numericality => true, :allow_nil => true
  	validate :checkAdmittBeforeDischarge
 
  	# Check date comparison with admitted_at and discharged_at

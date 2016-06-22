@@ -50,7 +50,7 @@
       <td class="tableCol"><%= encounter.discharged_at %></td>
       <td><%= link_to 'Show', patient_encounter_path(encounter.patient_id, encounter.id) %></td>
       <td><%= link_to 'Edit', edit_patient_encounter_path(encounter.patient_id, encounter.id) %></td>
-      <td><%= link_to 'Destroy', patient_encounter_path(encounter.patient_id, encounter.id), method: :delete, data: {:confirm => 'Are you sure?'} %></td>
+      <td><%= link_to 'Destroy', patient_encounter_path(encounter.patient_id, encounter.id), method: :delete, data: {:confirm => 'Are you sure to delete the item?'} %></td>
     </tr>
     <% end %>
   </table>

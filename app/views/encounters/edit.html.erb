@@ -1,17 +1,17 @@
-<h1>Add New Patient Encounter</h1>
+<h1>Edit Patient Encounter</h1>
 
 <br>
 <br>
 
-<%= form_for([@patient, @encounter]) do |f| %>
+<%= form_for :encounter, url: patient_encounter_path(params[:patient_id], @encounter), method: :patch do |f| %>
 
-<% if @patient.errors.any? %>
+<% if @encounter.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@patient.errors.count, "error") %> blocked this encounter from being saved:
+      <%= pluralize(@encounter.errors.count, "error") %> blocked this encounter from being saved:
     </h2>
     <ul>
-      <% @patient.errors.full_messages.each do |msg| %>
+      <% @encounter.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
@@ -59,6 +59,6 @@
 <br>
 
 <%= f.submit %> |
-<%= link_to 'Cancel', patient_path(@patient.id) %>
+<%= link_to 'Cancel', patient_path(params[:patient_id]) %>
 
 <% end %>

@@ -1,5 +1,10 @@
 class EncountersController < ApplicationController
 	def new
+		# If missing patient_id param
+		if(!params[:patient_id])
+			redirect_to root_path
+		end
+
 		@patient = Patient.find(params[:patient_id])
 		@encounter = @patient.encounters.build
 
@@ -10,6 +15,11 @@ class EncountersController < ApplicationController
 	end
 
 	def show
+		# If missing patient_id or id params
+		if(!params[:patient_id] or !params[:id])
+			redirect_to root_path
+		end
+
 		@patient = Patient.find(params[:patient_id])
 		@encounter = Encounter.find(params[:id])
 
@@ -20,34 +30,47 @@ class EncountersController < ApplicationController
 	end
 
 	def edit
-		@patient = Patient.find(params[:patient_id])
+		# If missing patient_id or id params
+		if(!params[:patient_id] or !params[:id])
+			redirect_to root_path
+		end
+
 		@encounter = Encounter.find(params[:id])
 
 		# If inifilizing fails, redirect them to the root page
-		if(!defined? @patient or !defined? @encounter)
+		if(!defined? @encounter)
 			redirect_to root_path
 		end
 	end
 
 	def update
-		@patient = Patient.find(params[:patient_id])
+		# If missing patient_id or id params
+		if(!params[:patient_id] or !params[:id])
+			redirect_to root_path
+		end
+
 		@encounter = Encounter.find(params[:id])
 
 		# If inifilizing fails, redirect them to the root page
-		if(!defined? @patient or !defined? @encounter)
+		if(!defined? @encounter)
 			redirect_to root_path
 		end
-		 
+
 		# If update is successful, go back to patient show page
 		# If fails, return to edit page along with objects
 		if @encounter.update(encounter_params)
-	    	redirect_to @patient
+	    	redirect_to patient_encounter_path(params[:patient_id], @encounter)
 		else
 			render 'edit'
 	    end
 	end
 
 	def create
+		# If missing patient_id or id params
+		if(!params[:patient_id])
+			redirect_to root_path
+		end
+
 	    @patient = Patient.find(params[:patient_id])
 	    @encounter = @patient.encounters.create(encounter_params) # Creating encounter object
 
@@ -67,10 +90,15 @@ class EncountersController < ApplicationController
   	end
 
   	def destroy
+  		# If missing patient_id or id params
+		if(!params[:id])
+			redirect_to root_path
+		end
+
 		@encounter = Encounter.find(params[:id])
 
 		# If inifilizing fails, redirect them to the root page
-		if(!defined? @patient or !defined? @encounter)
+		if(!defined? @encounter)
 			redirect_to root_path
 		else
 			@encounter.destroy
